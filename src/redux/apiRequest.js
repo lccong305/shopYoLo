@@ -1,7 +1,7 @@
 import axios from "axios";
 import cateApi from "../api/cateApi";
 import productApi from "../api/productApi";
-
+import userApi from "../api/userApi";
 import {
   addProductError,
   //add
@@ -74,14 +74,113 @@ import {
   deleteOrderSuccess,
   deleteOrderError,
 } from "./payment/paymentSlice";
-
-import { getUserFailed, getUserStart, getUserSuccess } from "./user/userSlice";
+import {
+  getdetailStart,getdetailFailed,resetUser,resetUserFailed,resetUserSuccess,updateStart1,updateError1, updateSuccessUser,deleteUserFailed,deleteUserStart,deleteUserSuccess,  addSuccess, addStart , addFailed,  getUserdetail, getUserStart, getUserSuccess, getUserFailed,getAllUserFail , getAllUserFetching,getAllUserSuccess 
+} from "./user/userSlice";
 // import {
 //   getOrderError,
 //   getOrderStart,
 //   getOrderSuccess,
 // } from "./order/orderSlice";
 import orderApi from "../api/orderApi";
+
+// add user 
+
+export const addUser = async (userRegister, dispatch) => {
+  dispatch(addStart());
+  try {
+    const res = await axios.post(
+      "https://apieshopbasic.herokuapp.com/User",
+      userRegister
+    );
+    dispatch(addSuccess(res.data));
+  } catch (err) {
+    console.log(err);
+    dispatch(addFailed());
+  }
+};
+
+//delete user
+
+export const deleteUser = async (dispatch, id) => {
+  dispatch(deleteUserStart());
+  try {
+    let _id = JSON.stringify(id);
+    axios({
+      method: "DELETE",
+      url: "https://apieshopbasic.herokuapp.com/User",
+      data: _id,
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
+      dispatch(deleteUserSuccess(id));
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch(deleteUserFailed());
+  }
+};
+
+//get all user
+
+export const getAlluser = () => async (dispatch) => {
+  dispatch(getAllUserFetching());
+  try {
+    const res = await userApi.getAll();
+    console.log(res);
+      dispatch(getAllUserSuccess(res));
+  }
+  catch(err){
+    console.log(err);
+    dispatch(getAllUserFail());
+  }
+};
+//get user detail
+export const getUserdetailEdit = async (dispatch, slug) => {
+  dispatch(getdetailStart());
+  try {
+    const res = await userApi.getDetail(slug);
+    dispatch(getUserdetail(res));
+  } catch (err) {
+    dispatch(getdetailFailed());
+  }
+};
+//reset password
+
+export const resetPW = async (dispatch, id) => {
+  dispatch(resetUser());
+  try {
+    let _id = JSON.stringify(id);
+    axios({
+      method: "POST",
+      url: "https://apieshopbasic.herokuapp.com/ResetPass",
+      data: _id,
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
+      dispatch(resetUserSuccess(id));
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch(resetUserFailed());
+  }
+};
+//update user
+
+export const updateUser = async (dispatch, newProduct) => {
+  dispatch(updateStart1());
+  try {
+    const res = await axios.put(
+      "https://apieshopbasic.herokuapp.com/User",
+      newProduct
+    );
+    console.log(res.data);
+    dispatch(updateSuccessUser(res.data));
+  } catch (err) {
+    console.log(err);
+    dispatch(updateError1());
+  }
+};
+
+
 
 // get all product
 export const getAllProduct = async (dispatch) => {

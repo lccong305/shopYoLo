@@ -12,6 +12,7 @@ import Register from "../pages/Register";
 import { ProtectedRoute } from "../utils/ProtectedRoute";
 
 import CategoryAD from "../admin/Category";
+import User from "../admin/User";
 import Order from "../admin/Order";
 import ProductAD from "../admin/Product";
 // import ProductAD from "../admin/Product";
@@ -39,6 +40,7 @@ const Routes = () => {
       <ProtectedRoute exact path="/admin-product" component={ProductAD} />
       <ProtectedRoute exact path="/admin-category" component={CategoryAD} />
       <ProtectedRoute exact path="/order" component={Order} />
+      <ProtectedRoute exact path="/account_user" component={User} />
       <ProtectedRoute exact path="/history-order" component={HistoryOrder} />
     </Switch>
   );
