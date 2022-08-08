@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+const items =
+  localStorage.getItem("cartItems") !== null
+    ? JSON.parse(localStorage.getItem("cartItems"))
+    : [];
 
 const initialState = {
+  value: items,
   currentUser: null,
   isFetching: null,
   error: false,
@@ -24,6 +29,7 @@ const authSlice = createSlice({
 
     loginSucess: (state, action) => {
       state.loginFetching = false;
+      window.localStorage.clear();
       state.currentUser = action.payload;
     },
 

@@ -294,6 +294,7 @@ export const paymentInfo = async (paymentOrderDetail, dispatch, history) => {
     if (paymentOrderDetail.payment === "COD") {
       dispatch(paymentInfoSuccess(res.data));
       history.push("/payment-success");
+      localStorage.setItem("cartItems", []);
     } else {
       dispatch(paymentInfoSuccess(res.data));
     }
