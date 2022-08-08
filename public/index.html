@@ -128,14 +128,19 @@
   </script>
   <!-- ---------------------------------plugin facebook--------------------------------- -->
 
+  <!-- Messenger Plugin chat Code -->
   <div id="fb-root"></div>
+
   <!-- Your Plugin chat code -->
-  <div id="fb-customer-chat" class="fb-customerchat"></div>
+  <div id="fb-customer-chat" class="fb-customerchat">
+  </div>
+
   <script>
     var chatbox = document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", "104424361899039");
     chatbox.setAttribute("attribution", "biz_inbox");
   </script>
+
   <!-- Your SDK code -->
   <script>
     window.fbAsyncInit = function () {
@@ -144,6 +149,7 @@
         version: 'v14.0'
       });
     };
+
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;

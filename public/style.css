@@ -7,6 +7,6 @@
     border: 1px solid;
 }
 
-/* .fb-root {
-    position: fixed;    
-} */
+#fb-root {
+    color: red;
+}
