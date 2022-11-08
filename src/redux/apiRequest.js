@@ -110,7 +110,7 @@ export const loginUser = async (user, dispatch, history) => {
   dispatch(loginStart());
   try {
     const res = await axios.post(
-      "https://apieshopbasic.herokuapp.com/auth/signin",
+      "https://yoloshopapi.herokuapp.com/auth/signin",
       user
     );
     dispatch(loginSucess(res.data));
@@ -125,7 +125,7 @@ export const registerUser = async (userRegister, dispatch) => {
   dispatch(registerStart());
   try {
     const res = await axios.post(
-      "https://apieshopbasic.herokuapp.com/auth/signup",
+      "https://yoloshopapi.herokuapp.com/auth/signup",
       userRegister
     );
     dispatch(registerSuccess(res.data));
@@ -140,7 +140,7 @@ export const getUser = async (token, dispatch) => {
   dispatch(getUserStart());
   try {
     const res = await axios.get(
-      "https://apieshopbasic.herokuapp.com/User/Profile",
+      "https://yoloshopapi.herokuapp.com/User/Profile",
       {
         headers: {
           "Content-Type": "application/json",
@@ -206,7 +206,7 @@ export const addNewProduct = async (history, dispatch, newProduct) => {
     formData.append("size", ["s", "m"]);
 
     const res = await axios.post(
-      "https://apieshopbasic.herokuapp.com/Product",
+      "https://yoloshopapi.herokuapp.com/Product",
       formData
     );
     dispatch(addProductSuccess(res.data));
@@ -223,7 +223,7 @@ export const deleteProduct = async (dispatch, id) => {
     let _id = JSON.stringify(id);
     axios({
       method: "DELETE",
-      url: "https://apieshopbasic.herokuapp.com/Product",
+      url: "https://yoloshopapi.herokuapp.com/Product",
       data: _id,
       headers: { "Content-Type": "application/json" },
     }).then((res) => {
@@ -254,7 +254,7 @@ export const updateProduct = async (dispatch, newProduct) => {
     formData.append("size", ["s", "m"]);
 
     const res = await axios.put(
-      "https://apieshopbasic.herokuapp.com/Product",
+      "https://yoloshopapi.herokuapp.com/Product",
       formData
     );
     console.log(res.data);
@@ -270,7 +270,7 @@ export const paymentPaypal = async (info, dispatch, history) => {
   dispatch(paymentPaypalStart());
   try {
     const res = await axios.post(
-      "https://apieshopbasic.herokuapp.com/paypal",
+      "https://yoloshopapi.herokuapp.com/paypal",
       info
     );
     dispatch(paymentPaypalSuccess());
@@ -287,7 +287,7 @@ export const paymentInfo = async (paymentOrderDetail, dispatch, history) => {
   console.log(paymentOrderDetail);
   try {
     const res = await axios.post(
-      "https://apieshopbasic.herokuapp.com/Payment",
+      "https://yoloshopapi.herokuapp.com/Payment",
       paymentOrderDetail
     );
 
@@ -308,7 +308,7 @@ export const paymentVNPay = async (info, dispatch, history) => {
   dispatch(paymentVNPayStart());
   try {
     const res = await axios.post(
-      "https://apieshopbasic.herokuapp.com/vnpay",
+      "https://yoloshopapi.herokuapp.com/vnpay",
       info
     );
     dispatch(paymentVNPaySuccess());
@@ -354,7 +354,7 @@ export const updatePendingOrder = async (id, dispatch) => {
   try {
     axios({
       method: "PUT",
-      url: "https://apieshopbasic.herokuapp.com/OrderStatus",
+      url: "https://yoloshopapi.herokuapp.com/OrderStatus",
       data: _id,
       headers: { "Content-Type": "application/json" },
     }).then((res) => {
@@ -374,7 +374,7 @@ export const deleteOrder = async (id, dispatch) => {
     let _id = JSON.stringify(id);
     axios({
       method: "DELETE",
-      url: "https://apieshopbasic.herokuapp.com/Order",
+      url: "https://yoloshopapi.herokuapp.com/Order",
       data: _id,
       headers: { "Content-Type": "application/json" },
     }).then((res) => {

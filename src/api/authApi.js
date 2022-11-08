@@ -1,11 +1,6 @@
 import axiosClient from "./axiosClient";
 
-const productApi = {
-  // neu co params
-  //   getAll: (params) => {
-  //     const url = "/Product";
-  //     return axiosClient.get(url, { params });
-  //   },
+const authApi = {
   postLogin: (user) => {
     const url = "/auth/signin";
     const _user = user;
@@ -14,4 +9,4 @@ const productApi = {
   },
 };
 
-export default productApi;
+export default authApi;

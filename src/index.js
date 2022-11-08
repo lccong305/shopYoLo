@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import reportWebVitals from "./reportWebVitals";
 
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
-
+import "./index.css";
 import "./assets/boxicons-2.0.7/css/boxicons.min.css";
 import "./sass/index.scss";
 
