@@ -87,8 +87,11 @@ import orderApi from "../api/orderApi";
 export const getAllProduct = async (dispatch) => {
   dispatch(getProductStart());
   try {
-    const res = await productApi.getAll();
-    dispatch(getProductSuccess(res));
+    // const res = await productApi.getAll();
+    // console.log(res);
+    const res = await axios.get("https://yoloshopapi.herokuapp.com/Product");
+    console.log("api_resquest", res.data);
+    dispatch(getProductSuccess(res.data));
   } catch (err) {
     dispatch(getProductError());
   }
@@ -205,6 +208,7 @@ export const addNewProduct = async (history, dispatch, newProduct) => {
     formData.append("categoryName", newProduct.categoryName);
     formData.append("size", ["s", "m"]);
 
+    console.log(newProduct);
     const res = await axios.post(
       "https://yoloshopapi.herokuapp.com/Product",
       formData

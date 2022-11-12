@@ -25,6 +25,7 @@ const EditProduct = ({ showEdit, setShowEdit, product }) => {
 
   const handleClose = (e) => {
     e.preventDefault();
+    // document.querySelector("body").classList.remove("add-modal");
     setShowEdit(false);
     setName("");
     setPrice("");
@@ -62,101 +63,102 @@ const EditProduct = ({ showEdit, setShowEdit, product }) => {
   };
   return (
     <>
-      <div className="AddProductContainer">
-        <div className="AddProductContent">
-          <div className="overlay"></div>
-          <div className="edit-content">
-            <h2 className="edit-tittle">Edit product</h2>
-            <div className="form-group-edit">
-              <label>Product ID</label>
-              <input type="text" value={id} className="product-input-ad" />
-            </div>
-            <form method="put" encType="multipart/form-data">
-              <div className="form-group-edit">
-                <label>Name</label>
-                <input
-                  value={name}
-                  type="text"
-                  className="product-input-ad"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="form-group-edit">
-                <label>Price</label>
-                <input
-                  value={price}
-                  type="text"
-                  className="product-input-ad"
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </div>
-              <div className="form-group-edit">
-                <label>Category</label>
-
-                <FormControl fullWidth>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    label="Age"
-                    value={categoryName}
-                    onChange={(e) => setCategoryName(e.target.value)}
-                  >
-                    {getCateData?.map((item) => (
-                      <MenuItem key={item.id} value={item.name}>
-                        {item.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </div>
-              <div className="form-group-edit">
-                <label>Description</label>
-                <input
-                  type="text"
-                  className="product-input-ad"
-                  value={shortDes}
-                  onChange={(e) => setShortDes(e.target.value)}
-                />
-              </div>
-              <div className="form-group-edit">
-                <label>Size</label>
-                <div className="product-sizes act_size">
-                  {Sizes.map((item, index) => (
-                    <div
-                      key={index}
-                      className={`product__info__item__list__item ${
-                        size === item ? "active" : ""
-                      }`}
-                      onClick={() => setSize(item)}
-                    >
-                      <span className="product__info__item__list__item__size">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="form-group-edit">
-                <label>Image</label>
-                <input
-                  type="file"
-                  // value={image}
-                  className="product-input-ad"
-                  onChange={handleFileImage}
-                />
-              </div>
-              <div className="form-button-edit">
-                <button
-                  type="submit"
-                  className="btn-add-product"
-                  onClick={handleEditProduct}
-                >
-                  Edit product
-                </button>
-                <button onClick={handleClose}>Close</button>
-              </div>
-            </form>
+      <div className="overlay"></div>
+      <div className="container-edit-product">
+        <div className="edit-content">
+          <div className="edit-image">
+            <img src={image} className="edit-image-product" />
           </div>
+          <form
+            className="form-edit"
+            method="put"
+            encType="multipart/form-data"
+          >
+            <div className="form-group-edit">
+              <label>Name</label>
+              <input
+                value={name}
+                type="text"
+                className="product-input-ad"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group-edit">
+              <label>Price</label>
+              <input
+                value={price}
+                type="text"
+                className="product-input-ad"
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div className="form-group-edit">
+              <label>Category</label>
+
+              <FormControl fullWidth>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Age"
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                >
+                  {getCateData?.map((item) => (
+                    <MenuItem key={item.id} value={item.name}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="form-group-edit">
+              <label>Description</label>
+              <input
+                type="text"
+                className="product-input-ad"
+                value={shortDes}
+                onChange={(e) => setShortDes(e.target.value)}
+              />
+            </div>
+            <div className="form-group-edit">
+              <label>Size</label>
+              <div className="product-sizes act_size">
+                {Sizes.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`product__info__item__list__item ${
+                      size === item ? "active" : ""
+                    }`}
+                    onClick={() => setSize(item)}
+                  >
+                    <span className="product__info__item__list__item__size">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="form-group-edit">
+              <label>Image</label>
+              <input
+                type="file"
+                // value={image}
+                className="product-input-ad"
+                onChange={handleFileImage}
+              />
+            </div>
+            <div className="form-button-edit">
+              <button
+                type="submit"
+                className="btn-add-product"
+                onClick={handleEditProduct}
+              >
+                Edit product
+              </button>
+              <button onClick={handleClose}>Close</button>
+            </div>
+          </form>
         </div>
       </div>
     </>

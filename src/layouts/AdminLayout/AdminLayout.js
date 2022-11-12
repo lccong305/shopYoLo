@@ -11,6 +11,9 @@ import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import StoreIcon from "@mui/icons-material/Store";
 import React from "react";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { BiCategory } from "react-icons/bi";
+import { GiClothes } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
@@ -45,10 +48,14 @@ const AdminLayout = ({ children }) => {
                       <span>Dashboard</span>
                     </li>
                     <p className="title">LISTS</p>
-                    <Link to="/account_user" style={{ textDecoration: "none" }}>
+
+                    <Link
+                      to="/admin-account"
+                      style={{ textDecoration: "none" }}
+                    >
                       <li>
-                        <PersonOutlineIcon className="icon" />
-                        <span>Users</span>
+                        <MdOutlineAccountCircle className="icon" />
+                        <span>Accounts</span>
                       </li>
                     </Link>
                     <Link
@@ -56,10 +63,20 @@ const AdminLayout = ({ children }) => {
                       style={{ textDecoration: "none" }}
                     >
                       <li>
-                        <StoreIcon className="icon" />
+                        <GiClothes className="icon" />
                         <span>Products</span>
                       </li>
                     </Link>
+                    <Link
+                      to="/admin-category"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <li>
+                        <BiCategory className="icon" />
+                        <span>Categories</span>
+                      </li>
+                    </Link>
+
                     <Link to="/order" style={{ textDecoration: "none" }}>
                       <li>
                         <CreditCardIcon className="icon" />
@@ -103,10 +120,6 @@ const AdminLayout = ({ children }) => {
                       <span>Logout</span>
                     </li>
                   </ul>
-                </div>
-                <div className="bottom">
-                  <div className="colorOption"></div>
-                  <div className="colorOption"></div>
                 </div>
               </div>
             </SidebarAdmin>
