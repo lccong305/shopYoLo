@@ -61,9 +61,9 @@
 
 .form-button-edit {
   display: flex;
-  margin-top: 30px;
+  margin-top: 10px;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 10px;
   button {
     width: 100px;
   }
@@ -116,7 +116,14 @@
 }
 .form-edit {
   width: 100%;
-  display: inline-flex;
+}
+
+.form-edit input {
+  width: 100%;
+}
+
+.form-edit-v1 {
+  display: flex;
   justify-content: space-between;
   gap: 5px;
 }
@@ -137,4 +144,45 @@
   display: flex;
   gap: 20px;
   width: 100%;
+}
+
+.form-group-edit label {
+  font-size: 14px;
+}
+
+.form__update-container {
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 70%;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+}
+
+.form__update-image {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form__update-image img {
+  display: block;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.form__update-form {
+  display: flex;
+  width: 65%;
+  gap: 10px;
+}
+.form-left,
+.form-right {
+  margin-top: 70px;
 }

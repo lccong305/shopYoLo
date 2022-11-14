@@ -1,18 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import AdminLayout from "../../layouts/AdminLayout/";
 
-import DataTable from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, getDetailProduct } from "../../redux/apiRequest";
 import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 
-import { AiFillEye, AiFillEyeInvisible, AiOutlineDelete } from "react-icons/ai";
-import { GrEdit } from "react-icons/gr";
 import axios from "axios";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
-import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Product = () => {
   const dispatch = useDispatch();

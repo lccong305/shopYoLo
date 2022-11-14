@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { addNewProduct } from "../../redux/apiRequest";
 import "./style.scss";
-import axios from "axios";
 const AddProduct = ({ showAddProduct, setShowAddProduct, fetchData }) => {
   const dispatch = useDispatch();
   const history = useHistory();

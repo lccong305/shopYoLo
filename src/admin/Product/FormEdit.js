@@ -4,11 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import FormControl from "@mui/material/FormControl";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { useHistory } from "react-router-dom";
-import "./style.scss";
-import { addNewProduct, updateProduct } from "../../redux/apiRequest";
-import { toast } from "react-toastify";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 const FormEdit = ({ product, setShow, fetchData }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -55,6 +53,8 @@ const FormEdit = ({ product, setShow, fetchData }) => {
         price: price,
         shortDes: shortDes,
         file: image,
+        quantity: quantity,
+        discount: discount,
         categoryName: categoryName,
         size: size,
       };
@@ -68,8 +68,8 @@ const FormEdit = ({ product, setShow, fetchData }) => {
       formData.append("shortDes", newProduct.shortDes);
       formData.append("shortDetails", "xin chao");
       formData.append("file", newProduct.file);
-      formData.append("quantity", 100);
-      formData.append("discount", 10);
+      formData.append("quantity", newProduct.quantity);
+      formData.append("discount", newProduct.discount);
       formData.append("view", 1);
       formData.append("categoryName", newProduct.categoryName);
       formData.append("size", ["s", "m", "l"]);
@@ -105,126 +105,124 @@ const FormEdit = ({ product, setShow, fetchData }) => {
   return (
     <>
       <div className="overlay"></div>
-      <div className="container-edit-product">
-        <div className="edit-content">
-          <div className="edit-image">
-            <img src={cloneImage} className="edit-image-product" />
-          </div>
-          <form
-            className="form-edit"
-            method="put"
-            encType="multipart/form-data"
-          >
-            <div className="form-left">
-              <div className="form-group-edit">
-                <label>Name</label>
-                <input
-                  value={name}
-                  type="text"
-                  className="product-input-ad"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group-edit">
-                <label>Price</label>
-                <input
-                  value={price}
-                  type="text"
-                  className="product-input-ad"
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </div>
-              <div className="form-group-edit">
-                <label>Quantity</label>
-                <input
-                  value={quantity}
-                  type="text"
-                  className="product-input-ad"
-                  onChange={(e) => setQuantity(e.target.value)}
-                />
-              </div>
-              <div className="form-group-edit">
-                <label>Category</label>
-
-                <FormControl fullWidth>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    label="Age"
-                    value={categoryName}
-                    onChange={(e) => setCategoryName(e.target.value)}
-                  >
-                    {categories.length > 0 &&
-                      categories?.map((item) => (
-                        <MenuItem key={item.id} value={item.name}>
-                          {item.name}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-              </div>
-            </div>
-            <div className="form-right">
-              <div className="form-group-edit">
-                <label>Discount</label>
-                <input
-                  value={discount}
-                  type="text"
-                  className="product-input-ad"
-                  onChange={(e) => setDiscount(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group-edit">
-                <label>Description</label>
-                <input
-                  type="text"
-                  className="product-input-ad"
-                  value={shortDes}
-                  onChange={(e) => setShortDes(e.target.value)}
-                />
-              </div>
-              <div className="form-group-edit">
-                <label>Size</label>
-                <div className="product-sizes act_size">
-                  {Sizes.map((item, index) => (
-                    <div
-                      key={index}
-                      className={`product__info__item__list__item ${
-                        size === item ? "active" : ""
-                      }`}
-                      onClick={() => setSize(item)}
-                    >
-                      <span className="product__info__item__list__item__size">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="form-group-edit">
-                <label>Image</label>
-                <input
-                  type="file"
-                  // value={image}
-                  className="product-input-ad"
-                  onChange={handleFileImage}
-                />
-              </div>
-              <div className="form-button-edit">
-                <button
-                  type="submit"
-                  className="btn-add-product"
-                  onClick={handleEditProduct}
-                >
-                  Edit product
-                </button>
-                <button onClick={handleClose}>Close</button>
-              </div>
-            </div>
-          </form>
+      <div className="form__update-container">
+        <div className="form__update-image">
+          <img src={cloneImage} className="" />
         </div>
+        <form
+          className="form__update-form"
+          method="put"
+          encType="multipart/form-data"
+        >
+          <div className="form-left">
+            <div className="form-group-edit">
+              <label>Name</label>
+              <input
+                value={name}
+                type="text"
+                className="product-input-ad"
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group-edit">
+              <label>Price</label>
+              <input
+                value={price}
+                type="text"
+                className="product-input-ad"
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div className="form-group-edit">
+              <label>Quantity</label>
+              <input
+                value={quantity}
+                type="text"
+                className="product-input-ad"
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+            </div>
+            <div className="form-group-edit">
+              <label>Category</label>
+
+              <FormControl fullWidth>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Age"
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                >
+                  {categories.length > 0 &&
+                    categories?.map((item) => (
+                      <MenuItem key={item.id} value={item.name}>
+                        {item.name}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+          <div className="form-right">
+            <div className="form-group-edit">
+              <label>Discount</label>
+              <input
+                value={discount}
+                type="text"
+                className="product-input-ad"
+                onChange={(e) => setDiscount(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group-edit">
+              <label>Description</label>
+              <input
+                type="text"
+                className="product-input-ad"
+                value={shortDes}
+                onChange={(e) => setShortDes(e.target.value)}
+              />
+            </div>
+            <div className="form-group-edit">
+              <label>Size</label>
+              <div className="product-sizes act_size">
+                {Sizes.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`product__info__item__list__item ${
+                      size === item ? "active" : ""
+                    }`}
+                    onClick={() => setSize(item)}
+                  >
+                    <span className="product__info__item__list__item__size">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="form-group-edit">
+              <label>Image</label>
+              <input
+                type="file"
+                // value={image}
+                className="product-input-ad"
+                onChange={handleFileImage}
+              />
+            </div>
+            <div className="form-button-edit">
+              <button
+                type="submit"
+                className="btn-add-product"
+                onClick={handleEditProduct}
+              >
+                Edit product
+              </button>
+              <button onClick={handleClose}>Close</button>
+            </div>
+          </div>
+        </form>
       </div>
     </>
   );
