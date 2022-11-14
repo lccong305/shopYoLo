@@ -251,8 +251,8 @@ export const updateProduct = async (dispatch, newProduct) => {
     formData.append("shortDes", newProduct.shortDes);
     formData.append("shortDetails", "xin chao");
     formData.append("file", newProduct.file);
-    formData.append("quantity", newProduct.quantity);
-    formData.append("discount", newProduct.discount);
+    formData.append("quantity", 100);
+    formData.append("discount", 10);
     formData.append("view", 1);
     formData.append("categoryName", newProduct.categoryName);
     formData.append("size", ["s", "m"]);
@@ -262,6 +262,7 @@ export const updateProduct = async (dispatch, newProduct) => {
       formData
     );
     console.log(res.data);
+
     dispatch(updateSuccess(res.data));
   } catch (err) {
     console.log(err);

@@ -189,7 +189,11 @@ const Product = () => {
                         <MdDeleteForever />
                       </div>
                       <div>
-                        <EditProduct product={item} />
+                        <EditProduct
+                          dispatch={dispatch}
+                          fetchData={fetchData}
+                          product={item}
+                        />
                       </div>
                     </div>
                   </td>

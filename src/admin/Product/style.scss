@@ -116,6 +116,13 @@
 }
 .form-edit {
   width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+.form-left,
+.form-right {
+  width: 50%;
 }
 .edit-image {
   width: 350px;

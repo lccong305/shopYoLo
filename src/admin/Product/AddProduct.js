@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import FormControl from "@mui/material/FormControl";
@@ -7,6 +7,7 @@ import Select from "@mui/material/Select";
 import { useHistory } from "react-router-dom";
 import { addNewProduct } from "../../redux/apiRequest";
 import "./style.scss";
+import axios from "axios";
 const AddProduct = ({ showAddProduct, setShowAddProduct, fetchData }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -44,6 +45,17 @@ const AddProduct = ({ showAddProduct, setShowAddProduct, fetchData }) => {
     setQty("");
     setDiscount("");
   };
+
+  const [categories, setCategories] = useState([]);
+
+  async function fetchCategories() {
+    const res = await axios.get("https://yoloshopapi.herokuapp.com/Category");
+    setCategories(res.data);
+  }
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
@@ -120,11 +132,12 @@ const AddProduct = ({ showAddProduct, setShowAddProduct, fetchData }) => {
                   label="Age"
                   onChange={(e) => setCategoryName(e.target.value)}
                 >
-                  {getCateData?.map((item) => (
-                    <MenuItem key={item.id} value={item.name}>
-                      {item.name}
-                    </MenuItem>
-                  ))}
+                  {categories.length > 0 &&
+                    categories?.map((item) => (
+                      <MenuItem key={item.id} value={item.name}>
+                        {item.name}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
             </div>
