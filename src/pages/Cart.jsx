@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import Button from "../components/Button";
 import CartItem from "../components/CartItem";
 import Helmet from "../components/Helmet";
+import { orderx } from "../redux/shopping-cart/cartItemsSlide";
 
 // import { getAllProduct } from "../redux/apiRequest";
 import numberWithCommas from "../utils/numberWithCommas";
@@ -57,6 +58,10 @@ const Cart = () => {
 
   console.log("cartItems cart page: ", cartItems);
 
+  const handleOrder = () => {
+    history.push("/payment");
+  };
+
   return (
     <Helmet title="Giỏ hàng">
       <div className="cart">
@@ -69,7 +74,7 @@ const Cart = () => {
             </div>
           </div>
           <div className="cart__info__btn">
-            <Button size="block" onClick={() => history.push("/payment")}>
+            <Button size="block" onClick={handleOrder}>
               Đặt hàng
             </Button>
             <Link to="/catalog">

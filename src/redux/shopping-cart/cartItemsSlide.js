@@ -129,10 +129,15 @@ export const cartItemsSlice = createSlice({
         )
       );
     },
+    orderx: (state, action) => {
+      localStorage.setItem("cartItems", "[]");
+      state.value = [];
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addItem, removeItem, updateItem } = cartItemsSlice.actions;
+export const { addItem, removeItem, updateItem, orderx } =
+  cartItemsSlice.actions;
 
 export default cartItemsSlice.reducer;

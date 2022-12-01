@@ -77,6 +77,17 @@ const AddProduct = ({ showAddProduct, setShowAddProduct, fetchData }) => {
     setShowAddProduct(false);
     fetchData();
   };
+  const handeAddSize = (item, index) => {
+    const items = document.querySelectorAll(".product__info__item__list__item");
+    setSize(item);
+    items.forEach((item, idx) => {
+      if (index === idx) {
+        item.classList.toggle("active");
+      }
+    });
+  };
+
+  console.log(size);
 
   return (
     <>
@@ -153,17 +164,22 @@ const AddProduct = ({ showAddProduct, setShowAddProduct, fetchData }) => {
               <label>Size</label>
               <div className="product-sizes act_size">
                 {Sizes.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`product__info__item__list__item ${
-                      size === item ? "active" : ""
-                    }`}
-                    onClick={() => setSize(item)}
-                  >
-                    <span className="product__info__item__list__item__size">
+                  <div key={index} onClick={() => handeAddSize(item, index)}>
+                    <span className="product__info__item__list__item">
                       {item}
                     </span>
                   </div>
+                  // <div
+                  //   key={index}
+                  //   className={`product__info__item__list__item ${
+                  //     size === item ? "active" : ""
+                  //   }`}
+                  //   onClick={() => setSize(item)}
+                  // >
+                  //   <span className="product__info__item__list__item__size">
+                  //     {item}
+                  //   </span>
+                  // </div>
                 ))}
               </div>
             </div>

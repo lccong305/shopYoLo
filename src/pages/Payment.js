@@ -30,6 +30,7 @@ import PaypalCheckoutButton from "../components/PaypalCheckoutButton";
 
 import axios from "axios";
 import Loading from "../components/Loading";
+import { orderx } from "../redux/shopping-cart/cartItemsSlide";
 
 const Payment = () => {
   const Item = styled(Paper)(({ theme }) => ({
@@ -226,6 +227,7 @@ const Payment = () => {
       };
 
       paymentInfo(paymentOrderDetail, dispatch, history);
+      dispatch(orderx());
     }
   };
 
